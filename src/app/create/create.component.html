@@ -1,0 +1,29 @@
+
+    <form [formGroup]="formGroup">
+        <div formGroupName="contactInfo">
+          <!-- Your form controls here -->
+          <div>
+            <label>Title</label>
+            <input type="text" pInputText formControlName="title" [(ngModel)]="addItemRequest.title">
+          </div>
+          <div>
+            <label>Price</label>
+            <input type="text" pInputText formControlName="price" [(ngModel)]="addItemRequest.price">
+          </div>
+          <div>
+            <label>Author</label>
+            <input type="text" pInputText formControlName="author" [(ngModel)]="addItemRequest.author">
+          </div>
+          <div>
+            <label>Edition</label>
+            <input type="text" pInputText formControlName="edition" [(ngModel)]="addItemRequest.edition">
+          </div>
+          <div>
+            <label>Published Date</label>
+            <input type="date" pInputText formControlName="publishedDate" [(ngModel)]="addItemRequest.publishedDate">
+          </div>
+        </div>
+        <!-- Move the closing form tag here -->
+        <button class="btn" type="button" (click)="createProduct()">Submit</button>
+      </form>
+      

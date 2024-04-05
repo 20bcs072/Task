@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup" >
+    <div formGroupName="reportInfo">
+      <!-- Your form controls here -->
+        <div>
+        <label>From Date</label>
+        <input type="date" pInputText formControlName="fromDate" [(ngModel)]="newreport.fromDate">
+      </div>
+      <div>
+      <label>To Date</label>
+      <input type="date" pInputText formControlName="toDate" [(ngModel)]="newreport.toDate">
+    </div>
+    <div>
+        <label>Report Status</label>
+        <input type="text" pInputText formControlName="ReportStatus" [(ngModel)]="newreport.ReportStatus">
+      </div>
+    </div>
+    <!-- Move the closing form tag here -->
+    <button class="btn" type="button" (click)="addreport()">Submit</button>
+  </form>
+  
