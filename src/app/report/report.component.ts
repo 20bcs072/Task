@@ -16,40 +16,62 @@ export class ReportComponent implements OnInit{
   formGroup!: FormGroup;
 
   newreport:Report={
+    reportID:0,
     fromDate:new Date(),
     toDate: new Date(),
-    ReportStatus: ''
+    reportStatus: ''
   };
 
   formSubmitted = false;
   constructor(private productService:LoginServiceService,private router:Router,private formBuilder: FormBuilder){}
   ngOnInit(): void {
-    // this.addreport();
-    this.formGroup=this.formBuilder.group({
-      reportInfo: this.formBuilder.group({
-        fromDate:[''],
-        toDate:[''],
-        ReportStatus:['']
-      })
-    });
-   
-  }
-  addreport(){
-    alert("Report was added successfully.")
-    console.log("console"+this.newreport)
-    this.productService.addReport(this.newreport)
-    .subscribe({
-      next:(home)=>
-      {
-        this.router.navigate(['lazy']);
-        console.log(home);
-      },
-      error:(response)=>
-      {
-        console.log(response);
-      }
-    })
-  }
 
+    }
+    
+    addReport()
+    {
+   
+      //console.log(this.addRequest)
+      this.productService.addReport(this.newreport)
+      .subscribe({
+        next:(logistics)=>
+        {
+          //alert('Product created successfully');
+          // this.toast.success({detail:"Success Message",summary:"Product added successfully",duration:5000})
+          console.log(logistics);
+           this.router.navigate(['reportdata']);
+         
+         
+        },
+        error:(response)=>
+        {
+          // this.toast.info({detail:"Error Message",summary:"Enter a different package id",duration:5000})
+          console.log(response);
+        }
+      })
+    }
+   
+  // }
+  // addreport(){
+
+    
+  //   console.log("console"+this.newreport)
+  //   this.productService.addReport(this.newreport)
+  //   .subscribe({
+  //     next:(home)=>
+  //     {
+  //       alert("Report was added successfully.")
+  //       this.router.navigate(['reportdata']);
+  //       console.log(home);
+  //     },
+  //     error:(response)=>
+  //     {
+  //       alert("To date should be greater than From date!!")
+  //       console.log(response);
+  //     }
+  //   })
+  // }
+
+   
 
 }

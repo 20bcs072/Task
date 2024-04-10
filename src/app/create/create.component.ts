@@ -3,7 +3,7 @@ import { Home } from '../home';
 import { Title } from '@angular/platform-browser';
 import { LoginServiceService } from '../login-service.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -31,27 +31,40 @@ constructor(private productService:LoginServiceService,private router:Router,pri
 ngOnInit(): void {
   this.formGroup = this.formBuilder.group({
     contactInfo: this.formBuilder.group({
-      title: [''],
-      price: [''],
-      author: [''],
-    edition: [''],
-    publishedDate: ['']
+      title: ['', Validators.required],
+      price: ['', Validators.required],
+      author: ['', Validators.required],
+      edition: ['', Validators.required],
+      publishedDate: ['', Validators.required]
     })
   });
 }
 createProduct()
 {
+  
+  if (
+    !this.addItemRequest.title ||
+    !this.addItemRequest.price ||
+    !this.addItemRequest.author ||
+    !this.addItemRequest.edition ||
+    !this.addItemRequest.publishedDate
+  ) {
+    alert('Error: Please fill in all fields.');
+    return;
+  }
+
   console.log(this.addItemRequest.publishedDate);
 this.productService.addProduct(this.addItemRequest)
 .subscribe({
   next:(home)=>
   {
-    
+    console.log('Product was added successfully.')
     this.router.navigate(['lazy']);
     console.log(home);
   },
   error:(response)=>
   {
+    console.log('Failed to add a product')
     console.log(response);
   }
 })

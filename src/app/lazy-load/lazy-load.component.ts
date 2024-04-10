@@ -4,7 +4,8 @@ import { LoginServiceService } from '../login-service.service';
 import { TableLazyLoadEvent } from 'primeng/table';
 import { LazyLoadEvent, ScrollerOptions } from 'primeng/api';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-lazy-load',
   templateUrl: './lazy-load.component.html',
@@ -15,7 +16,7 @@ export class LazyLoadComponent implements OnInit {
   totalRecords:any;
   houses:Home[]=[];
   loadLazyTimeout: any;
-  constructor (private lazyService:LoginServiceService,private elementRef: ElementRef, private router:Router)  {
+  constructor (private lazyService:LoginServiceService,private elementRef: ElementRef, private router:Router,private http: HttpClient,private datePipe: DatePipe)  {
     this.items = [];
     for (let i = 0; i < 10000; i++) {
         this.items.push({ label: 'Item ' + i, value: 'Item ' + i });
@@ -253,5 +254,16 @@ onDateFilterChange(event: any) {
   this.getUsers(event);
   }
   
+  downloadExcel(): void {
+    this.http.get('http://localhost:5215/api/Excel', { responseType: 'blob' }).subscribe(response => {
+      const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'report_data.xlsx';
+      link.click();
+      window.URL.revokeObjectURL(link.href);
+    });
+  }
+
   
 }

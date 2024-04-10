@@ -13,11 +13,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
-import { DropdownComponent } from './dropdown/dropdown.component';
+
 import { DropdownModule } from 'primeng/dropdown';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReportComponent } from './report/report.component';
+import { DatePipe } from '@angular/common';
+import { ReportdataComponent } from './reportdata/reportdata.component';
 
 
 @NgModule({
@@ -25,9 +27,9 @@ import { ReportComponent } from './report/report.component';
     AppComponent,
     LoginComponent,
     LazyLoadComponent,
-    DropdownComponent,
     CreateComponent,
-    ReportComponent
+    ReportComponent,
+    ReportdataComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { ReportComponent } from './report/report.component';
     ButtonModule,
     DropdownModule,
     ReactiveFormsModule,
+    DatePipe,
 
     JwtModule.forRoot({
       config: {
@@ -53,7 +56,8 @@ import { ReportComponent } from './report/report.component';
     })
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

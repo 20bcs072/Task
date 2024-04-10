@@ -98,9 +98,28 @@ export class LoginServiceService {
     return this.http.post<Home[]>('http://localhost:5215/products',addItemRequest);
 
   }
-  addReport(addReport:Report):Observable<Report[]>{
+  // addReport(addReport:Report):Observable<Report[]>{
     
-    return this.http.post<Report[]>('http://localhost:5215/AddReport',addReport);
+  //   return this.http.post<Report[]>('http://localhost:5215/AddReport',addReport);
+  // }
+
+  addReport(addRequest:Report)
+  {
+ 
+    addRequest.reportID=0;
+    return this.http.post<Report[]>('http://localhost:5215/AddReport', addRequest);
+    //this.http.post(this.baseApiUrl+'/api/Log/InsertLo',addRequest)
+  }
+ 
+
+
+
+
+
+  getAllReport():Observable<Report[]> {
+
+    return this.http.get<Report[]>('http://localhost:5215/ReportDetails');
+
   }
 
 }

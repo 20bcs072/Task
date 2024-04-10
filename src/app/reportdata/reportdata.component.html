@@ -1,0 +1,18 @@
+<p-table [value]="reports" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th> From Date</th>
+            <th>To Date</th>
+            <th>Report Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-reports>
+        <tr>
+            <td>{{reports.fromDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{ reports.toDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reports.reportStatus }}</td>
+         
+    </ng-template> 
+   
+      
+</p-table>

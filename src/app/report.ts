@@ -1,6 +1,7 @@
 export interface Report {
-  
+
+        reportID:number,
         fromDate:Date,
         toDate:Date,
-        ReportStatus:string
+        reportStatus:string
     }
